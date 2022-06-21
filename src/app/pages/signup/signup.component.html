@@ -1,0 +1,15 @@
+<H1>SIGNUP PAGE</H1>
+
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmitfn()" novalidate>
+    <input type="text" placeholder="username" formControlName="username" ><br/><br/>
+    <div *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched) && loginForm.get('username')?.errors?.required" style="color: red">Username is required</div>
+    <input type="password" placeholder="password" formControlName="password"><br/><br/>
+    <div *ngIf="!loginForm.get('password')?.errors?.required">
+        Password  must be greater than 8 and must contain one or more special characters
+    </div>
+      <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched) && loginForm.get('password')?.errors?.required" style="color: red">
+        Password is required
+      </div>
+    <button [disabled]="loginForm.pristine  || !loginForm.valid" type="submit">Sign up</button>
+</form>
